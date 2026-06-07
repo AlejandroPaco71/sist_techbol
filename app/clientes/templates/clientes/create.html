@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>CREAR CLIENTE</h1>
+
+<form action="{{ url_for('bp_clientes.create') }}" method="POST">
+
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" placeholder="Nombres completos" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" placeholder="Número de teléfono" name="telefono" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar cliente</button>
+    <a class="btn btn-secondary" href="{{ url_for('bp_clientes.index') }}">Cancelar</a>
+
+</form>
+
+{% endblock %}

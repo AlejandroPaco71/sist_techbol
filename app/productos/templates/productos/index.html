@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Productos</h2>
+    <a href="{{ url_for('bp_productos.create') }}" class="btn btn-primary mb-3">Nuevo Producto</a>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category if category != 'error' else 'danger' }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio (Bs)</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ "%.2f"|format(producto.precio) }}</td>
+                <td>{{ producto.stock }}</td>
+                <td>
+                    <a href="{{ url_for('bp_productos.edit', id=producto.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{{ url_for('bp_productos.delete', id=producto.id) }}" class="btn btn-sm btn-danger"
+                        onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
