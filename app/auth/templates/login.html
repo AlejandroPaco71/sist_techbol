@@ -12,16 +12,19 @@
                 <div class="card-body">
                     <form method="post">
                         <div class="form-outline mb-4">
-                            <input type="email" id="username" name="username" class="form-control" required>
                             <label class="form-label" for="username">Usuario</label>
+                            <input type="email" id="username" name="username" class="form-control" required>
+                            
                         </div>
 
                         <div class="form-outline mb-4">
-                            <input type="password" id="password" name="password" class="form-control" required>
                             <label class="form-label" for="password">Constraseña</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                            
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block mb-4">Ingresar</button>
+                        <a class="btn btn-secondary btn-block mb-4" href="{{ url_for('bp_core.index') }}">Cancelar</a>
                     </form>
                     <div class="text-center">
                         <p>No tiene cuenta? <a href="{{ url_for('auth.register') }}">Registrate</a></p>

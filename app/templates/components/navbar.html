@@ -1,12 +1,45 @@
-<nav>
-    <a href="{{ url_for('bp_core.index') }}">inicio</a>
-    {% if current_user.is_authenticated %}
-        <a href="{{ url_for('bp_core.dashboard')}}">Dashboard</a>
-        <a href="{{ url_for('auth.logout') }}">Salir</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
 
-    {% else %}
-        <a href="{{ url_for('auth.login')}}">Login</a>
-        <a href="{{ url_for('auth.register')}}">Registro</a>
-    {% endif %}
+        {% if current_user.is_authenticated %}
+        <a class="navbar-brand fw-bold" href="{{ url_for('bp_core.dashboard') }}">
+            Tech-Bol
+        </a>
+        {% else %}
+        <a class="navbar-brand fw-bold" href="{{ url_for('bp_core.index') }}">
+            Tech-Bol
+        </a>
+        {% endif %}
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ url_for('bp_clientes.index')}}">Clientes</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ url_for('bp_productos.index')}}">Productos</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ url_for('bp_pedidos.index')}}">Pedidos</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.logout') }}">Salir</a>
+
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ url_for('auth.login')}}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ url_for('auth.register')}}">Registro</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </nav>
-<hr>
