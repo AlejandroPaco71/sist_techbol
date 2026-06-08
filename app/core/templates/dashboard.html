@@ -1,16 +1,49 @@
 {% extends 'base.html' %}
-{% block title %} Dashboard {% endblock %}
+{% block title %} Dashboard - TechBol {% endblock %}
 
 {% block content %}
-<h1>
-    Panel Principal
-    dashboard
-</h1>
+<div class="container my-5">
+    
+    <div class="mb-4 pb-2 border-bottom">
+        <h1>Panel Principal</h1>
+        <p class="text-muted">Usuario actual: <strong>{{ current_user.username }}</strong></p>
+    </div>
 
-<p>
-    {{ current_user.username }}
-</p>
+    <div class="row g-4">
+        
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body py-4">
+                    <h3 class="card-title text-primary mb-3">Clientes</h3>
+                    <a href="{{ url_for('bp_clientes.index') }}" class="btn btn-primary w-100">
+                        Ver Clientes
+                    </a>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body py-4">
+                    <h3 class="card-title text-success mb-3">Productos</h3>
+                    <a href="{{ url_for('bp_productos.index') }}" class="btn btn-success w-100">
+                        Ver Productos
+                    </a>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-md-4">
+            <div class="card shadow-sm text-center">
+                <div class="card-body py-4">
+                    <h3 class="card-title text-warning mb-3">Pedidos</h3>
+                    <a href="{{ url_for('bp_pedidos.index') }}" class="btn btn-warning text-white w-100">
+                        Ver Pedidos
+                    </a>
+                </div>
+            </div>
+        </div>
 
+    </div>
+</div>
 {% endblock %}

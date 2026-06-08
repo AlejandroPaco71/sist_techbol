@@ -1,12 +1,38 @@
+
+
 {% extends 'base.html' %}
-{% block title %} Inicio {% endblock %}
+{% block title %} Inicio - TechBol {% endblock %}
 
 {% block content %}
-<h1>
-    Sistema de autenticacion
-</h1>
-{% if current_user.is_authenticated %}
-<h3>Bienvenido al sistema {{ current_user.username }}</h3>
+<div class="container my-5 text-center">
+    <div class="py-5 my-5">
+        <h1 class="display-1 fw-bolder text-primary mb-3 text-uppercase">
+            TechBol
+        </h1>
+        
+        <p class="lead fs-3 text-secondary max-width-md mx-auto px-3">
+            Empresa dedicada al desarrollo y provisión de soluciones tecnológicas integrales para la **gestión de inventarios y optimización de ventas** en tiempo real.
+        </p>
 
-{% endif %}
+        <hr class="my-5 mx-auto" style="max-width: 200px; border-top: 3px solid var(--bs-primary); opacity: 0.7;">
+
+        {% if current_user.is_authenticated %}
+            <div class="alert alert-light border d-inline-block px-4 py-2 shadow-sm mb-4" role="alert">
+                <span class="text-muted">Sesión activa como:</span> 
+                <strong class="text-primary text-uppercase">{{ current_user.username }}</strong>
+            </div>
+            <div>
+                <a class="btn btn-primary btn-lg px-5 shadow-sm fw-bold" href="{{ url_for('bp_core.dashboard') }}" role="button">
+                    Ingresar al Sistema
+                </a>
+            </div>
+        {% else %}
+            <div class="mt-4">
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg px-5 shadow-sm fw-bold">
+                    Iniciar Sesión
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
