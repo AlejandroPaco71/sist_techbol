@@ -1,23 +1,12 @@
 {% extends 'base.html' %}
-{% block title %}Blueprints - Flask{% endblock %}
+{% block title %} Inicio {% endblock %}
 
 {% block content %}
+<h1>
+    Sistema de autenticacion
+</h1>
+{% if current_user.is_authenticated %}
+<h3>Bienvenido al sistema {{ current_user.username }}</h3>
 
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-12 text-center mb-5">
-            <h1 class="display-5 fw-bold text-primary">📕 Home Page</h1>
-            <p class="lead text-muted">Bienvenido al gestor de tareas y miembros: {% if current_user.is_authenticated %}
-                {{ current_user.username }} {% endif %}</p>
-            <hr class="w-25 mx-auto text-primary opacity-75">
-        </div>
-    </div>
-    {% if not current_user.is_authenticated %}
-    <div class="col-14 text-center mb-5">
-        <h2 class="lead text-muted">Inicia sesion</h2>
-    </div>
-    {% endif %}
-</div>
-
-
+{% endif %}
 {% endblock %}
