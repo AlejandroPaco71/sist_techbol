@@ -1,15 +1,19 @@
-from flask import request, render_template, redirect, url_for, Blueprint, flash
-from app.app import db
+from flask import request, render_template, redirect, url_for, flash
+from flask_login import login_required
+from app.extensions import db
 from app.productos.models import Producto
+from app.productos import bp_productos
 
-bp_productos = Blueprint('bp_productos', __name__, template_folder='templates')
+#bp_productos = Blueprint('bp_productos', __name__, template_folder='templates')
 
 @bp_productos.route("/")
+@login_required
 def index():
     productos = Producto.query.all()
     return render_template('productos/index.html', productos=productos)
 
 @bp_productos.route("/create", methods=['GET', 'POST'])
+@login_required
 def create():
     if request.method == 'GET':
         return render_template('productos/create.html')
@@ -24,6 +28,7 @@ def create():
         return redirect(url_for('bp_productos.index'))
 
 @bp_productos.route("/edit/<int:id>", methods=['GET', 'POST'])
+@login_required
 def edit(id):
     if request.method == 'POST':
         nombre = request.form['nombre']
@@ -41,6 +46,7 @@ def edit(id):
     return render_template("productos/edit.html", producto=producto)
 
 @bp_productos.route("/delete/<int:id>")
+@login_required
 def delete(id):
     producto = Producto.query.get(id)
     db.session.delete(producto)

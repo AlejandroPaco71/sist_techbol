@@ -26,6 +26,9 @@ def create_app():
     #1. Importacion del blueprint (Para cada modulo)
     from app.auth import auth_bp
     from app.core import bp_core
+    from app.clientes import bp_clientes
+    from app.productos import bp_productos
+    from app.pedidos import bp_pedidos
 
     # from app.core.routes import bp_core
     # from app.clientes.routes import bp_clientes
@@ -35,6 +38,9 @@ def create_app():
     #2. Registrar el blueprint (Para cada modulo)
     app.register_blueprint(bp_core)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(bp_clientes)
+    app.register_blueprint(bp_productos)
+    app.register_blueprint(bp_pedidos)
     # app.register_blueprint(bp_core, url_prefix='/')
     # app.register_blueprint(bp_clientes, url_prefix='/clientes')
     # app.register_blueprint(bp_productos, url_prefix='/productos')

@@ -1,11 +1,14 @@
 from flask import request, render_template, redirect, url_for, Blueprint, flash
 from datetime import datetime
-from app.app import db
+from flask_login import login_required
+from app.extensions import db
 from app.pedidos.models import Pedido
 from app.clientes.models import Cliente
 from app.productos.models import Producto
 
-bp_pedidos = Blueprint('bp_pedidos', __name__, template_folder='templates')
+from app.pedidos import bp_pedidos
+
+#bp_pedidos = Blueprint('bp_pedidos', __name__, template_folder='templates')
 
 @bp_pedidos.route("/")
 def index():
