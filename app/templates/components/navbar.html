@@ -16,15 +16,18 @@
             <ul class="navbar-nav">
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('bp_clientes.index')}}">Clientes</a>
+                    <a class="nav-link {% if request.endpoint == 'bp_clientes.index' %}active bg-primary text-white rounded{% endif %}"
+                        href="{{ url_for('bp_clientes.index') }}">Clientes</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('bp_productos.index')}}">Productos</a>
+                    <a class="nav-link {% if request.endpoint == 'bp_productos.index' %}active bg-success text-white rounded{% endif %}"
+                        href="{{ url_for('bp_productos.index') }}">Productos</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('bp_pedidos.index')}}">Pedidos</a>
+                    <a class="nav-link {% if request.endpoint == 'bp_pedidos.index' %}active bg-warning text-dark rounded{% endif %}"
+                        href="{{ url_for('bp_pedidos.index') }}">Pedidos</a>
                 </li>
 
                 <li class="nav-item">
